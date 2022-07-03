@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CI&amp;T Movie DB</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="coming_soon_string">Coming Soon</string>
+    <string name="now_playing_string">Now PLaying</string>
+    <string name="cast_crew"><![CDATA[Cast & Crew]]></string>
+    <string name="show_more">Show More</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="photos">Photos</string>
+    <string name="view_less">View Less</string>
+    <string name="view_all">View All</string>
+    <string name="image_loader">image Loader</string>
+    <string name="rate_value">2.5</string>
+    <string name="search_hint">Search</string>
+    <string name="btnMenu_home">Home</string>
+    <string name="btnMenu_nowPlaying">Now Playing</string>
+    <string name="btnMenu_emBreve">Coming Soon</string>
+    <string name="btnMenu_favorites">Favorites</string>
+    <string name="btnMenu_toWatch">To Watch</string>
+    <string name="btnMenu_watched">Watched</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="gallery_menu">My Gallery</string>
+    <string name="lists">My Lists</string>
+    <string name="image">Image</string>
+</resources>

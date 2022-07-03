@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item
+        android:id="@+id/btn_home"
+        android:icon="@drawable/home_icon_24"
+        android:title="@string/btnMenu_home" />
+
+    <item
+        android:id="@+id/btn_nowPlaying"
+        android:icon="@drawable/now_playing_icon_24"
+        android:title="@string/btnMenu_nowPlaying" />
+
+    <item
+        android:id="@+id/btn_popular"
+        android:icon="@drawable/popular_icon_24"
+        android:title="Popular" />
+
+    <item
+        android:id="@+id/btn_upcoming"
+        android:icon="@drawable/upcoming_icon_24"
+        android:title="@string/btnMenu_emBreve" />
+
+
+    <item android:title="@string/lists">
+        <menu>
+
+            <item
+                android:id="@+id/btn_favorites"
+                android:icon="@drawable/favorite_menu_icon_24"
+                android:title="@string/btnMenu_favorites" />
+
+            <item
+                android:id="@+id/btn_toWatch"
+                android:icon="@drawable/to_watch_icon_24"
+                android:title="@string/btnMenu_toWatch" />
+
+            <item
+                android:id="@+id/btn_watched"
+                android:icon="@drawable/watched_icon_24"
+                android:title="@string/btnMenu_watched" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/image">
+        <menu>
+
+            <item
+                android:id="@+id/btn_bkd_favorites"
+                android:icon="@drawable/gallery_icon_24"
+                android:title="@string/gallery_menu" />
+
+        </menu>
+    </item>
+
+</menu>
