@@ -1,9 +1,11 @@
 package com.example.moviedb.component
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import androidx.annotation.RequiresApi
 import com.example.moviedb.R
 import com.example.moviedb.databinding.ComponentMovieGroupButtonBinding
 
@@ -44,16 +46,22 @@ class MovieGroupButton @JvmOverloads constructor(
         rightButtonText = attributes.getString(R.styleable.MovieGroupButton_right_field_name)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupBodyLeftButton(text: String?) = with(binding){
         leftButton.text = text
         leftButton.setOnClickListener {
+            leftButton.setTextColor(context.getColor(R.color.white))
+            rightButton.setTextColor(context.getColor(R.color.blue_dark_5))
             onLeftButtonClick?.invoke()
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupBodyRightButton(text: String?) = with(binding){
         rightButton.text = text
         rightButton.setOnClickListener {
+            leftButton.setTextColor(context.getColor(R.color.blue_dark_5))
+            rightButton.setTextColor(context.getColor(R.color.white))
             onRightButtonClick?.invoke()
         }
     }

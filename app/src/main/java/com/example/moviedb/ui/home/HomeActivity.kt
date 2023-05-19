@@ -1,4 +1,4 @@
-package com.example.moviedb.ui
+package com.example.moviedb.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,9 +30,8 @@ internal class HomeActivity : BindingActivity<ActivityHomeBinding>() {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
                 getMovieByName(textView.text.toString())
-                true
             }
-            false
+            true
         }
     }
 
