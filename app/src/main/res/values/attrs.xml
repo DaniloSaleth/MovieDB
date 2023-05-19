@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MovieGroupButton">
+        <attr name="state">
+            <enum name="left_selected" value="0" />
+            <enum name="right_select" value="1" />
+        </attr>
+        <attr name="left_field_name" format="string"/>
+        <attr name="right_field_name" format="string"/>
+    </declare-styleable>
+</resources>
