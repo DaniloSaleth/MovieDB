@@ -1,3 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">MovieDB</string>
+    <string name="home_search_movies">Busque por filmes</string>
 </resources>

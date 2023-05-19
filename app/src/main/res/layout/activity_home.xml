@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.HomeActivity">
 
     <TextView
@@ -12,11 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="APP Movie DB"
+        android:text="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/iv_search"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
@@ -25,12 +27,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_app_title" />
 
-    <com.example.moviedb.component.MovieGroupButton
+    <LinearLayout
+        android:id="@+id/ll_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:left_field_name="Now Playing"
-        android:layout_marginHorizontal="@dimen/spacing_sm"
-        app:right_field_name="Comming Soon"
-        app:layout_constraintTop_toBottomOf="@+id/tv_app_title"/>
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_app_title">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:background="@drawable/round_field"
+            android:hint="@string/home_search_movies"
+            android:importantForAccessibility="yes"
+            android:paddingTop="@dimen/spacing_xs"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:hintTextAppearance="@style/black_border_rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_search"
+                style="@style/search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_nano"
+                android:background="@color/transparent"
+                android:backgroundTint="@color/white"
+                android:imeOptions="actionSearch"
+                android:importantForAccessibility="yes"
+                android:inputType="textVisiblePassword"
+                android:maxLength="255"
+                android:paddingTop="@dimen/spacing_xs_nano" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.example.moviedb.component.MovieGroupButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_sm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:left_field_name="Now Playing"
+            app:right_field_name="Comming Soon" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
