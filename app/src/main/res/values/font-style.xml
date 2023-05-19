@@ -5,7 +5,27 @@
         <item name="lineHeight">18sp</item>
         <item name="fontWeight">500</item>
         <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textColor">@color/blue_dark_5</item>
+        <item name="android:textColor">@color/blue_dark</item>
     </style>
 
+    <style name="movieItemTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/blue_dark</item>
+    </style>
+
+    <style name="movieItemGenre">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/blue_dark_50</item>
+    </style>
+
+    <style name="movieItemDescription">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/blue_dark_50</item>
+    </style>
 </resources>

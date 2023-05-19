@@ -40,7 +40,7 @@
                     android:background="@drawable/radio_selector_home"
                     android:button="@android:color/transparent"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_dark_5"
+                    android:textColor="@color/blue_dark"
                     tools:text="Comming Soon" />
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>

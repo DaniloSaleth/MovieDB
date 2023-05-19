@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MovieDB</string>
     <string name="home_search_movies">Busque por filmes</string>
+    <string name="movie_item_description"> • %s<b> | %s</b></string>
 </resources>

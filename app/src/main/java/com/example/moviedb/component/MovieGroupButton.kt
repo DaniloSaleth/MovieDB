@@ -51,7 +51,7 @@ class MovieGroupButton @JvmOverloads constructor(
         leftButton.text = text
         leftButton.setOnClickListener {
             leftButton.setTextColor(context.getColor(R.color.white))
-            rightButton.setTextColor(context.getColor(R.color.blue_dark_5))
+            rightButton.setTextColor(context.getColor(R.color.blue_dark))
             onLeftButtonClick?.invoke()
         }
     }
@@ -60,7 +60,7 @@ class MovieGroupButton @JvmOverloads constructor(
     private fun setupBodyRightButton(text: String?) = with(binding){
         rightButton.text = text
         rightButton.setOnClickListener {
-            leftButton.setTextColor(context.getColor(R.color.blue_dark_5))
+            leftButton.setTextColor(context.getColor(R.color.blue_dark))
             rightButton.setTextColor(context.getColor(R.color.white))
             onRightButtonClick?.invoke()
         }
