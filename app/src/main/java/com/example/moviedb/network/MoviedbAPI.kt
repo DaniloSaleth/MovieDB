@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-internal interface MoviedbAPI {
+interface MoviedbAPI {
     @GET("movie/now_playing$TOKEN")
     suspend fun getNowPlaying(@Query("page") page: Int?): MovieListResponse
 

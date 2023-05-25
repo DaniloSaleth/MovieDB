@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/blue_light"
     android:paddingHorizontal="@dimen/spacing_sm"
     tools:context=".ui.home.HomeActivity">
 
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/iv_search"
-        android:layout_width="@dimen/spacing_big"
-        android:layout_height="@dimen/spacing_big"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintBottom_toBottomOf="@+id/tv_app_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/spacing_medium"
         app:layout_constraintTop_toBottomOf="@+id/tv_app_title">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +70,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

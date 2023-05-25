@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
-internal abstract class BindingActivity<T : ViewBinding> : AppCompatActivity() {
+abstract class BindingActivity<T : ViewBinding> : AppCompatActivity() {
 
     val binding: T get() = _binding
 
