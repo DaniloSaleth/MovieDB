@@ -1,154 +1,66 @@
 package com.example.moviedb.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import com.example.moviedb.databinding.ActivityHomeBinding
 import com.example.moviedb.infrastructure.BindingActivity
-import com.example.moviedb.model.app.movie.Movie
+import com.example.moviedb.model.movie.Movie
 import com.example.moviedb.ui.home.adapter.HomeAdapter
 import com.example.moviedb.ui.home.adapter.HomeListener
+import com.example.moviedb.ui.home.adapter.HomeState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
+
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindListeners()
-        teste()
-    }
-
-    private fun teste() {
-        val movies = listOf(
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-            Movie(
-                id = 1,
-                title = "The Super Mario Bros. Movie",
-                overview = "Teste",
-                runtime = 1,
-                release_date = "2023-01-27",
-                genre_ids = listOf(1),
-                vote_average = 1.0,
-                poster_path = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                backdrop_path = "Teste"
-            ),
-        )
-        binding.rvMovieList.adapter = HomeAdapter(movies, this)
+        bindObservers()
+        viewModel.getNowPlayingMovies()
     }
 
     override fun onCreateBinding(layoutInflater: LayoutInflater): ActivityHomeBinding {
         return ActivityHomeBinding.inflate(layoutInflater)
+    }
+
+    private fun bindObservers() {
+        viewModel.state.observe(this) {
+            when (it) {
+                is HomeState.Loading -> {
+                    handleLoadingState()
+                }
+                is HomeState.Error -> {
+                    handleErrorState()
+                }
+                is HomeState.Success -> {
+                    handleSuccessState(it.result.results)
+                }
+                is HomeState.EmptyState -> {
+                    handleEmptyState()
+                }
+            }
+        }
+    }
+
+    private fun handleLoadingState() {
+        //exibir loading
+    }
+
+    private fun handleErrorState() {
+        //exibir erro
+    }
+
+    private fun handleSuccessState(movies: List<Movie>) = with(binding) {
+        rvMovieList.adapter = HomeAdapter(movies, this@HomeActivity)
+    }
+
+    private fun handleEmptyState() {
+        //exibir lista vazia
     }
 
     private fun bindListeners() = with(binding) {
@@ -158,17 +70,29 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
             etSearch.text?.clear()
         }
 
-        binding.etSearch.setOnEditorActionListener { textView, actionId, _ ->
+        etSearch.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyboard()
                 getMovieByName(textView.text.toString())
             }
             true
         }
+
+        mgbHome.onLeftButtonClick = {
+            viewModel.getNowPlayingMovies()
+        }
+
+        mgbHome.onRightButtonClick = {
+            viewModel.getUpcomingMovies()
+        }
     }
 
     private fun getMovieByName(movieName: String) {
-        //chamar função para carregar novos filmes
+        viewModel.getMovieByName(movieName)
+    }
+
+    private fun getMovieDetails(movieId: Int) {
+        //chamar função para carregar detalhes do filme
     }
 
     private fun hideKeyboard() {
@@ -177,6 +101,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
     }
 
     override fun onClickItem(item: Movie) {
-        Log.v("teste", item.title.toString())
+        getMovieDetails(item.id)
     }
 }

@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.example.moviedb.R
 import com.example.moviedb.databinding.ItemMovieListBinding
 import com.example.moviedb.infrastructure.api.Constants.POSTER_PATH
-import com.example.moviedb.model.app.movie.Movie
+import com.example.moviedb.model.movie.Movie
 
 class HomeViewHolder(
     private val binding: ItemMovieListBinding,

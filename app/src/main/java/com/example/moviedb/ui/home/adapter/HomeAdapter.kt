@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.moviedb.databinding.ItemMovieListBinding
-import com.example.moviedb.model.app.movie.Movie
+import com.example.moviedb.model.movie.Movie
 
 class HomeAdapter(
     private val items: List<Movie>,

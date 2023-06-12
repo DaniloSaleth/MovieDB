@@ -1,30 +1,45 @@
 package com.example.moviedb.di
 
-import com.example.moviedb.infrastructure.api.MoshiHttp
-import com.example.moviedb.infrastructure.api.create
+import com.example.moviedb.infrastructure.api.Constants.BASE_URL
 import com.example.moviedb.network.MoviedbAPI
-import org.koin.core.context.loadKoinModules
-import org.koin.core.module.Module
+import com.example.moviedb.repository.movie.MovieRepository
+import com.example.moviedb.repository.movie.MovieRepositoryImpl
+import com.example.moviedb.ui.home.HomeViewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import retrofit2.Retrofit
+import org.koin.androidx.viewmodel.dsl.viewModel
+import retrofit2.converter.gson.GsonConverterFactory
 
-class MainModule {
-    fun load() {
-        loadKoinModules(module {
-            loadApi()
-            loadRepositories()
-            loadViewModel()
-        })
+val loadRepositories = module {
+    single {
+        MovieRepositoryImpl(
+            api = get()
+        ) as MovieRepository
+    }
+}
+
+val loadViewModels = module {
+    viewModel {
+        HomeViewModel(
+            repository = get()
+        )
+    }
+}
+
+val loadServices = module {
+    single(named("BASE_URL")) {
+        BASE_URL
     }
 
-    private fun Module.loadApi() {
-        single<MoviedbAPI> { get<MoshiHttp>().create() }
+    single {
+        Retrofit.Builder()
+            .baseUrl(get<String>(named("BASE_URL")))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
-    private fun Module.loadRepositories() {
-
-    }
-
-    private fun Module.loadViewModel() {
-
+    single {
+        get<Retrofit>().create(MoviedbAPI::class.java)
     }
 }

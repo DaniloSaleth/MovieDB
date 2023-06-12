@@ -1,4 +1,4 @@
-package com.example.moviedb.model.app.movie
+package com.example.moviedb.model.movie
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -13,5 +13,5 @@ data class Movie(
     val genre_ids: List<Int>?,
     val vote_average: Double?,
     val runtime: Int?,
-    val backdrop_path: String?,
+    val backdrop_path: String?
 ) : Parcelable
