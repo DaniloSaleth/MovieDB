@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
+import com.example.moviedb.R
 import com.example.moviedb.databinding.ActivityHomeBinding
 import com.example.moviedb.infrastructure.BindingActivity
 import com.example.moviedb.model.movie.Movie
@@ -74,7 +75,9 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
 
     private fun bindListeners() = with(binding) {
         ivSearch.setOnClickListener {
+            mgbHome.isVisible = tlSearch.isVisible
             tlSearch.isVisible = !tlSearch.isVisible
+            setupIconSearch(tlSearch.isVisible)
             hideKeyboard()
             etSearch.text?.clear()
         }
@@ -93,6 +96,16 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
 
         mgbHome.onRightButtonClick = {
             viewModel.getUpcomingMovies()
+        }
+    }
+
+    private fun setupIconSearch(showSearch : Boolean) = with(binding){
+        if (showSearch){
+            ivSearch.setImageResource(R.drawable.ic_movie_home)
+        }else{
+            binding.ivSearch.setImageResource(R.drawable.ic_baseline_search_24)
+            mgbHome.setLeftButtonSelected()
+            viewModel.getNowPlayingMovies()
         }
     }
 
