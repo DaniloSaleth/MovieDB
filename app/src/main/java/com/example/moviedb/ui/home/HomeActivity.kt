@@ -30,6 +30,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
 
     private fun bindObservers() {
         viewModel.state.observe(this) {
+            setupViewState()
             when (it) {
                 is HomeState.Loading -> {
                     handleLoadingState()
@@ -47,20 +48,28 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
         }
     }
 
-    private fun handleLoadingState() {
-        //exibir loading
+    private fun handleLoadingState() = with(binding) {
+        loadingState.root.isVisible = true
     }
 
-    private fun handleErrorState() {
-        //exibir erro
+    private fun handleErrorState() = with(binding) {
+        errorState.root.isVisible = true
     }
 
     private fun handleSuccessState(movies: List<Movie>) = with(binding) {
+        rvMovieList.isVisible = true
         rvMovieList.adapter = HomeAdapter(movies, this@HomeActivity)
     }
 
-    private fun handleEmptyState() {
-        //exibir lista vazia
+    private fun handleEmptyState() = with(binding) {
+        emptyList.root.isVisible = true
+    }
+
+    private fun setupViewState() = with(binding) {
+        rvMovieList.isVisible = false
+        emptyList.root.isVisible = false
+        errorState.root.isVisible = false
+        loadingState.root.isVisible = false
     }
 
     private fun bindListeners() = with(binding) {

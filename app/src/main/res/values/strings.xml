@@ -2,4 +2,6 @@
     <string name="app_name">MovieDB</string>
     <string name="home_search_movies">Busque por filmes</string>
     <string name="movie_item_description"> • %s<b> | %s</b></string>
+    <string name="empty_list_text">Não foi possível encontrar nenhum filme com esse nome !</string>
+    <string name="error_state_text">Erro inesperado!!\n Tente novamente mais tarde.</string>
 </resources>
