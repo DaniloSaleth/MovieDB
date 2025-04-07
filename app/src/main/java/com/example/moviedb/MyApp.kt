@@ -1,6 +1,7 @@
 package com.example.moviedb
 
 import android.app.Application
+import com.example.moviedb.di.loadNavigation
 import com.example.moviedb.di.loadRepositories
 import com.example.moviedb.di.loadServices
 import com.example.moviedb.di.loadViewModels
@@ -17,7 +18,7 @@ class MyApp : Application() {
                 androidLogger()
             }
             androidContext(this@MyApp)
-            modules(loadViewModels, loadRepositories, loadServices)
+            modules(loadViewModels, loadRepositories, loadServices, loadNavigation)
         }
     }
 }

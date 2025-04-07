@@ -9,14 +9,16 @@ import com.example.moviedb.R
 import com.example.moviedb.databinding.ActivityHomeBinding
 import com.example.moviedb.infrastructure.BindingActivity
 import com.example.moviedb.model.movie.Movie
+import com.example.moviedb.navigation.MovieDetailsNavigation
 import com.example.moviedb.ui.home.adapter.HomeAdapter
 import com.example.moviedb.ui.home.adapter.HomeListener
-import com.example.moviedb.ui.home.adapter.HomeState
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
 
     private val viewModel: HomeViewModel by viewModel()
+    private val navigation: MovieDetailsNavigation by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,12 +101,18 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
         }
     }
 
-    private fun setupIconSearch(showSearch : Boolean) = with(binding){
-        if (showSearch){
+    private fun setupIconSearch(showSearch: Boolean) = with(binding) {
+        if (showSearch) {
             ivSearch.setImageResource(R.drawable.ic_movie_home)
-        }else{
+        } else {
             binding.ivSearch.setImageResource(R.drawable.ic_baseline_search_24)
             mgbHome.setLeftButtonSelected()
+            getNowPlayingMovies()
+        }
+    }
+
+    private fun getNowPlayingMovies() {
+        if (viewModel.isNowPlaying.value == false) {
             viewModel.getNowPlayingMovies()
         }
     }
@@ -114,7 +122,9 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(), HomeListener {
     }
 
     private fun getMovieDetails(movieId: Int) {
-        //chamar função para carregar detalhes do filme
+        navigation.getMovieDetailsIntent(this, movieId).also {
+            startActivity(it)
+        }
     }
 
     private fun hideKeyboard() {

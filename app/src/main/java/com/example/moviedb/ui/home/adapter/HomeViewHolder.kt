@@ -16,7 +16,7 @@ class HomeViewHolder(
         bindingClick(item)
     }
 
-    private fun ItemMovieListBinding.bindView(item: Movie) = with(binding) {
+    private fun bindView(item: Movie) = with(binding) {
         Glide.with(backdrop)
             .load(POSTER_PATH + item.poster_path)
             .fitCenter()

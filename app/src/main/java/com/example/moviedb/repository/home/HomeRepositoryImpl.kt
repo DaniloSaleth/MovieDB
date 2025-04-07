@@ -1,13 +1,13 @@
-package com.example.moviedb.repository.movie
+package com.example.moviedb.repository.home
 
 import com.example.moviedb.network.MoviedbAPI
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.transform
 
-class MovieRepositoryImpl(
+class HomeRepositoryImpl(
     private val api: MoviedbAPI
-) : MovieRepository {
+) : HomeRepository {
 
     override fun getNowPlayingMovies() = flow {
         emit(api.getNowPlaying())

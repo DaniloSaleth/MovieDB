@@ -5,16 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.model.movie.MovieList
-import com.example.moviedb.repository.movie.MovieRepository
-import com.example.moviedb.ui.home.adapter.HomeState
+import com.example.moviedb.repository.home.HomeRepository
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val repository: MovieRepository
+    private val repository: HomeRepository
 ) : ViewModel() {
+
+    private val _isNowPlaying = MutableLiveData<Boolean>()
+    val isNowPlaying: LiveData<Boolean> = _isNowPlaying
 
     private val _state = MutableLiveData<HomeState>()
     val state: LiveData<HomeState> = _state
@@ -30,6 +32,7 @@ class HomeViewModel(
                     setErrorState()
                 }
                 .collect { movies ->
+                    _isNowPlaying.value = true
                     if (movies.results.isEmpty())
                         setEmptyState()
                     else
@@ -49,6 +52,7 @@ class HomeViewModel(
                     setErrorState()
                 }
                 .collect { movies ->
+                    _isNowPlaying.value = false
                     if (movies.results.isEmpty())
                         setEmptyState()
                     else
@@ -68,6 +72,7 @@ class HomeViewModel(
                     setErrorState()
                 }
                 .collect { movies ->
+                    _isNowPlaying.value = false
                     if (movies.results.isEmpty())
                         setEmptyState()
                     else

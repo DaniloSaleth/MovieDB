@@ -21,6 +21,7 @@
 
     <!-- Blue Dark % -->
     <color name="blue_dark_50">#3D121827</color>
+    <color name="blue_dark_30">#1F435F</color>
     <color name="blue_dark">#121827</color>
 
     <!-- App Light -->

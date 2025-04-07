@@ -24,8 +24,7 @@ class MovieGroupButton @JvmOverloads constructor(
     var leftButtonText: String? = null
         set(value) {
             field = value
-            setupBodyLeftButton(value)
-        }
+            setupBodyLeftButton(value)}
 
     var rightButtonText: String? = null
         set(value) {

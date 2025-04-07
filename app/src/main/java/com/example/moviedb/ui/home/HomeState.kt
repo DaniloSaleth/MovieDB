@@ -1,4 +1,4 @@
-package com.example.moviedb.ui.home.adapter
+package com.example.moviedb.ui.home
 
 import com.example.moviedb.model.movie.MovieList
 
